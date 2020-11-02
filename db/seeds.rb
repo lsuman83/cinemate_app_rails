@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.first_or_create(username: "test", email: "test@test.com", password: "password")
+
+wl1 = user.watch_lists.find_or_create_by(name: "TestList")

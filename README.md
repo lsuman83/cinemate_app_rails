@@ -103,6 +103,7 @@ the watched scope methods will be used to create a watched vs unwatched list
 # t.string :password_digest
 class User
 	# relationships
+	has_many :watch_lists
 	has_many :watch_list_movies
 	has_many :movies, through: :watch_list_movies
 	# validations 

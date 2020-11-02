@@ -1,8 +1,8 @@
 class WatchListMovie < ApplicationRecord
-  belongs_to :user
+  belongs_to :watch_list
   belongs_to :movie
 
-  validations :watched, presence: true
+  validates :watched, presence: true
 
   scope(:watched) -> { where(watched: true) }
 
@@ -17,5 +17,5 @@ class WatchListMovie < ApplicationRecord
   def self.genre_name(genres)
     included(:movies).where(genre: genres)
   end
-  
+
 end
