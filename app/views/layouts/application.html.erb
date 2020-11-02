@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <nav>
+      <% if user_signed_in? %>
+        <%= link_to "Watch Lists", root_path %>
+        <%= form_tag(destroy_user_session_path, method: :delete, style: "display: inline-block;") do %>
+          <%= submit_tag "Sign Out" %>
+        <% end %>
+      <% else %>
+        <%= link_to "Log In", new_user_session_path %>
+        <%= link_to "Sign Up", new_user_registration_path %>
+      <% end %>
+      
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
