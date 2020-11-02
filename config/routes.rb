@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movies
   resources :watch_lists
   devise_for :users
   root "watch_lists#index"
