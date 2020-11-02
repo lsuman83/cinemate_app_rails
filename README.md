@@ -163,6 +163,7 @@ class Movie
 	has_many :watch_lists, through: :watch_list_movies
 	# validations 
 	title, presence: true
+	description, presence: true
 	release_year, presence: true
     mpaa_rating, presence: true
     genre, presence: true
