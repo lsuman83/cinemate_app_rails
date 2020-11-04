@@ -60,8 +60,9 @@ WatchList#index '/watchlists'
 WatchList#show '/watchlist/:watchlist_id'
 WatchList#edit '/watchlist/edit'
 WatchList#destroy '/watchlists'
-WatchListMovies#index '/watchlist/:watchlist_id/movies'
-WatcchListMovies#destroy '/watchlist/:watchlist_id/movies'
+WatchListMovies#new '/watchlist/watchlist_id/watch_list_movies/new'
+WatchListMovies#index '/watchlist/:watchlist_id/watch_list_movies'
+WatcchListMovies#destroy '/watchlist/:watchlist_id/watch_list_movies'
 Movies#index '/movies'
 Movies#show '/movies/:movie_id'
 
@@ -135,7 +136,7 @@ end
 # t.references :movie
 class WatchListMovie
 	# relationships
-	belongs_to :user
+	belongs_to :watch_list
 	belongs_to :movie
 	# validations 
 	watched, presence: true
@@ -148,9 +149,6 @@ class WatchListMovie
 	end
 	def self.unwatched 
 		where(watched: false) 
-    end
-    def self.genre_name(genres)
-        includes(:movies).where(genre: genres)
     end
 end 
 # table migration for: movies 
@@ -170,4 +168,7 @@ class Movie
     genre, presence: true
 	# user submittable attributes (if this is a join model)
 	# scope_methods (if any)
+	def self.genre_name(genres)
+        includes(:movies).where(genre: genres)
+    end
 end

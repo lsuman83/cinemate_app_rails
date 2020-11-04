@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_151831) do
   end
 
   create_table "watch_list_movies", force: :cascade do |t|
-    t.boolean "watched"
+    t.boolean "watched", default: false
     t.integer "watch_list_id", null: false
     t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
