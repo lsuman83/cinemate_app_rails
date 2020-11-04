@@ -11,6 +11,7 @@
 
   <body>
     <nav>
+     <%= link_to "Movies", movies_path %>
       <% if user_signed_in? %>
         <%= link_to "Watch Lists", root_path %>
         <%= form_tag(destroy_user_session_path, method: :delete, style: "display: inline-block;") do %>
@@ -24,6 +25,9 @@
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
     <%= yield %>
   </body>
 </html>

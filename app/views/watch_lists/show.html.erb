@@ -1,0 +1,8 @@
+<h1><%= @watch_list.name%></h1>
+
+<p>
+<%= link_to 'Edit Watch List', edit_watch_list_path(@watch_list) %>
+<%= form_tag(watch_list_path(@watch_list), method: :delete) do %>
+    <%= submit_tag "Delete Watch List" %>
+<% end %>
+</p>
