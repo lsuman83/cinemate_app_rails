@@ -1,0 +1,16 @@
+<h1><%= @movie.title %></h1>
+
+<h3>Description: </h3>
+<p><%= @movie.description %></p>
+
+<h3>Release Year: </h3>
+<%= @movie.release_year %>
+
+<h3>MPAA Rating: </h3>
+<%= @movie.mpaa_rating %>
+
+<h3>Genre: </h3>
+<%= @movie.genre %>
+
+<h3>Watched:</h3>
+<%= "This film has been added to #{@movie.watch_lists.count} Watch Lists" %>
