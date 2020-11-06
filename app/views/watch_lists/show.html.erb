@@ -1,5 +1,31 @@
 <h1><%= @watch_list.name%></h1>
 
+<table style= "width: 800px">
+    <tr>
+        <th style= "text-align: left">Movies</th>
+        <th>Watched</th>
+        <th>Unwatched</th>
+    </tr>
+    
+    <% @watch_list.movies.each do |movie|%>
+        <tr>    
+           <td style = "text-align: left"> <%= movie.title %></td>
+        
+        <% @watch_list.watch_list_movies.watched.each do |movie_watched| %>
+            <% if movie.id == movie_watched.movie_id %>
+                <td style= "text-align: center">&#10004</td>
+            <% end %>
+        <% end %>
+
+        <% @watch_list.watch_list_movies.unwatched.each do |movie_unwatched| %>
+            <% if movie.id == movie_unwatched.movie_id %>
+                <td style= "text-align: center">&#10004</td>
+            <% end %>
+        <% end %>
+        </tr>
+    <% end %>
+</table>
+
 <p>
 <%= link_to 'Edit Watch List', edit_watch_list_path(@watch_list) %>
 <%= form_tag(watch_list_path(@watch_list), method: :delete) do %>
