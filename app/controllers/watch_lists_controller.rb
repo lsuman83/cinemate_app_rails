@@ -6,7 +6,7 @@ class WatchListsController < ApplicationController
     end
 
     def show
-        
+        @watch_list_movies = set_watch_list.watch_list_movies
     end
 
     def new
