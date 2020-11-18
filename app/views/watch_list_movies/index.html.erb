@@ -1,0 +1,27 @@
+<h1><%= @watch_list.name %>'s Unwatched Movies<h1>
+
+<ul>
+
+<% @watch_list_movies.unwatched.each do |unwatched_watch_list_movie| %>
+    <%= form_for [@watch_list, unwatched_watch_list_movie] do |f| %>
+   <li> 
+        <%= link_to unwatched_watch_list_movie.movie.title, movie_path(unwatched_watch_list_movie.movie) %>
+        <%= f.hidden_field(:watched, :value => true)  %>
+        <%= f.submit "Update" %>
+   </li>
+   <% end %>
+<% end %>
+</ul>
+
+
+<p>
+
+<h4>Sort by Genre:</h4>
+
+<%= form_tag({}, method: :get) do  %>
+    <%= select_tag :genre, options_for_select(Movie.genres, params[:genre]), prompt: "Please select Genre" %>
+    <%= submit_tag("Sort") %>
+<% end %>
+</p>
+
+

@@ -1,0 +1,15 @@
+<h1><%= @watch_list.name%>'s Watch List Movies<h1>
+
+
+<%= form_for [@watch_list, @watch_list_movie] do |f| %>
+    <p>
+        <%= f.collection_radio_buttons :movie_id, Movie.all, :id, :title do |b| %>
+            <%= b.label { b.radio_button + b.text } %><br>
+        <% end %>
+        
+    </p>
+<%= f.submit %>
+<% end %>
+
+
+

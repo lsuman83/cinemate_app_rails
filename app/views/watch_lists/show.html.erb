@@ -1,15 +1,14 @@
 <h1><%= @watch_list.name%></h1>
 
-<table style= "width: 800px">
+<table style= "width: 500px">
     <tr>
         <th style= "text-align: left">Movies</th>
         <th>Watched</th>
-        <th>Unwatched</th>
     </tr>
     
     <% @watch_list.movies.each do |movie|%>
         <tr>    
-           <td style = "text-align: left"> <%= movie.title %></td>
+           <td style = "text-align: left"> <%= link_to movie.title, movie_path(movie) %></td>
         
         <% @watch_list.watch_list_movies.watched.each do |movie_watched| %>
             <% if movie.id == movie_watched.movie_id %>
@@ -19,12 +18,13 @@
 
         <% @watch_list.watch_list_movies.unwatched.each do |movie_unwatched| %>
             <% if movie.id == movie_unwatched.movie_id %>
-                <td style= "text-align: center">&#10004</td>
+                <td style= "text-align: center"></td>
             <% end %>
         <% end %>
         </tr>
     <% end %>
 </table>
+
 
 <p>
 <%= link_to 'Edit Watch List', edit_watch_list_path(@watch_list) %>
@@ -32,3 +32,6 @@
     <%= submit_tag "Delete Watch List" %>
 <% end %>
 </p>
+
+<%= link_to 'Add Watch List Movies', new_watch_list_watch_list_movie_path(@watch_list) %><br>
+<%= link_to 'Watch List Movies', watch_list_watch_list_movies_path(@watch_list) %>
