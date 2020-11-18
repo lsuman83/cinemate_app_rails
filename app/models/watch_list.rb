@@ -9,4 +9,6 @@ class WatchList < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  
+
 end

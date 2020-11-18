@@ -4,6 +4,7 @@ class WatchListMovie < ApplicationRecord
 
   validates :watched, inclusion: [true, false]
 
+
   scope :watched, -> { where(watched: true) }
 
   scope :unwatched, -> { where(watched: false) }
