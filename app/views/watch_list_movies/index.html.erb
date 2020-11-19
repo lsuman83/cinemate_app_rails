@@ -6,9 +6,10 @@
     <%= form_for [@watch_list, unwatched_watch_list_movie] do |f| %>
    <li> 
         <%= link_to unwatched_watch_list_movie.movie.title, movie_path(unwatched_watch_list_movie.movie) %>
+        </li>
         <%= f.hidden_field(:watched, :value => true)  %>
         <%= f.submit "Update" %>
-   </li>
+   
    <% end %>
 <% end %>
 </ul>
@@ -20,7 +21,7 @@
 
 <%= form_tag({}, method: :get) do  %>
     <%= select_tag :genre, options_for_select(Movie.genres, params[:genre]), prompt: "Please select Genre" %>
-    <%= submit_tag("Sort") %>
+    <%= submit_tag("Filter") %>
 <% end %>
 </p>
 

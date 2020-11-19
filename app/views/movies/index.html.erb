@@ -1,5 +1,12 @@
-<h1>Movies</h1>
-
+<h1>All Movies</h1>
+<% if flash[:alert] %>
+    <%= flash[:alert]%>
+<% end %>
+<%= form_with(url: movies_search_path, method: 'get', local: true) do %>
+    <%= label_tag :title, "Search for a movie " %>
+    <%= text_field_tag :title, nil, placeholder: "Eg. The Matrix" %>
+    <%= button_tag 'Search' %>
+<% end %>
 <% @movies.each do |movie| %>
     <ul>
         <li><%= link_to movie.title, movie_path(movie) %></li>

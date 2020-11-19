@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
  
-  resources :movies
+  resources :movies, only: [:create, :index, :edit, :update, :delete]
+  get '/movies/search', to: 'movies#new'
+
   resources :watch_lists do
     resources :watch_list_movies 
     get "/watch_list_movies/:genre_slug", to: "watch_list_movies#genres" 

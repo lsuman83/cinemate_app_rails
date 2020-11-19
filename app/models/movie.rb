@@ -5,8 +5,13 @@ class Movie < ApplicationRecord
     validates :title, presence: true, uniqueness: { scope: :release_year}
     validates :description, :release_year, :mpaa_rating, :genre, presence: true
 
-    def self.genre_name(genres)
-        where(genre: genres.downcase)
+    def self.genres
+        pluck(:genre ).uniq
     end
+
+    def self.genre_name(genres)
+        where("lower(genre) = ?",  genres.downcase)
+    end
+  
     
 end

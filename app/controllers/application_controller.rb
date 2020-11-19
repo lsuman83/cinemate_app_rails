@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     flash[:message] = "Not Found"
     redirect_to root_path
   end
+  
   protected
 
   def configure_permitted_parameters

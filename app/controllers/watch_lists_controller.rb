@@ -1,6 +1,7 @@
 class WatchListsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_watch_list, only: [:show, :edit, :update, :destroy]
+    
     def index
         @watch_lists = current_user.watch_lists
     end
