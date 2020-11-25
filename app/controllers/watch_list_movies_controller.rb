@@ -51,6 +51,7 @@ class WatchListMoviesController < ApplicationController
     end
 
 
+
     private
 
     def watch_list_movie_params

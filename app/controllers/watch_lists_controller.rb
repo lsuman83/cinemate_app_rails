@@ -40,6 +40,7 @@ class WatchListsController < ApplicationController
     end
 
     def destroy
+        @watch_list.watch_list_movies.destroy_all
         @watch_list.destroy
         redirect_to watch_lists_path
     end
