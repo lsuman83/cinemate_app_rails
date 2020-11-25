@@ -8,8 +8,9 @@
     
     <% @watch_list.movies.each do |movie|%>
         <tr>    
-           <td style = "text-align: left"> <%= link_to movie.title, movie_path(movie) %></td>
-        
+           <td style = "text-align: left"> <%= link_to movie.title, movie_path(movie) %>
+        </td>
+
         <% @watch_list.watch_list_movies.watched.each do |movie_watched| %>
             <% if movie.id == movie_watched.movie_id %>
                 <td style= "text-align: center">&#10004</td>

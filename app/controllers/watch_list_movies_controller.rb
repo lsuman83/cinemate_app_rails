@@ -50,7 +50,14 @@ class WatchListMoviesController < ApplicationController
 
     end
 
+    def destroy
+        
+        @watch_list_movie = @watch_list.watch_list_movies.find(params[:id])
+        @watch_list_movie.destroy
+        redirect_to watch_list_watch_list_movies_path(@watch_list)
 
+    end
+    
 
     private
 

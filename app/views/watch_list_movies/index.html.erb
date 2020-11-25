@@ -3,17 +3,21 @@
 <ul>
 
 <% @watch_list_movies.unwatched.each do |unwatched_watch_list_movie| %>
+<li>
     <%= form_for [@watch_list, unwatched_watch_list_movie] do |f| %>
-   <li> 
+   
         <%= link_to unwatched_watch_list_movie.movie.title, movie_path(unwatched_watch_list_movie.movie) %>
-        </li>
+        
         <%= f.hidden_field(:watched, :value => true)  %>
         <%= f.submit "Update" %>
    
    <% end %>
+   <%= form_tag(watch_list_watch_list_movie_path(@watch_list, unwatched_watch_list_movie), method: :delete, style: "inline-block") do %>
+            <%= submit_tag "Delete" %>
+    <% end %>
+   </li>
 <% end %>
 </ul>
-
 
 <p>
 
