@@ -1,0 +1,11 @@
+<h1>Search Results</h1>
+<ol>
+<% @movie_ids.first[1].each do |movie_selection|%>
+    <li> <%= movie_selection["title"] + " - " + movie_selection["year"].to_s %></li><br>
+    <%= form_for @movie do |f| %>
+        <%= f.hidden_field(:imdb_id, :value => movie_selection["imdb_id"])%>
+        <%= f.submit "Add Movie"%>
+    <% end %>
+    <br>
+<% end %>
+</ol>

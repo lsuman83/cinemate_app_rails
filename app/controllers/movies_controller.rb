@@ -3,13 +3,17 @@ class MoviesController < ApplicationController
     def index
 
         @movies = Movie.all
+        
+    end
+
+    def new     
+
 
     end
 
-    def new
+    def search
 
         @movie_ids = get_movie_id(params[:title])
-        
 
         @movie = Movie.new
 
@@ -20,6 +24,7 @@ class MoviesController < ApplicationController
         end
 
     end
+
     
 
     def create
@@ -61,7 +66,7 @@ class MoviesController < ApplicationController
        
 
         request = Net::HTTP::Get.new(url)
-        request["x-rapidapi-key"] = ENV.fetch("RAPIDAPI_API_KEY")
+        request["x-rapidapi-key"] = ENV["RAPIDAPI_API_KEY"]
         request["x-rapidapi-host"] = 'movies-tvshows-data-imdb.p.rapidapi.com'
 
         response = http.request(request)
@@ -80,7 +85,7 @@ class MoviesController < ApplicationController
 
         
         request = Net::HTTP::Get.new(url)
-        request["x-rapidapi-key"] = ENV.fetch("RAPIDAPI_API_KEY")
+        request["x-rapidapi-key"] = ENV["RAPIDAPI_API_KEY"]
         request["x-rapidapi-host"] = 'movies-tvshows-data-imdb.p.rapidapi.com'
 
         response = http.request(request)
