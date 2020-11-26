@@ -9,7 +9,7 @@
         <%= link_to unwatched_watch_list_movie.movie.title, movie_path(unwatched_watch_list_movie.movie) %>
         
         <%= f.hidden_field(:watched, :value => true)  %>
-        <%= f.submit "Update" %>
+        <%= f.submit "Watched" %>
    
    <% end %>
    <%= form_tag(watch_list_watch_list_movie_path(@watch_list, unwatched_watch_list_movie), method: :delete, style: "inline-block") do %>
@@ -28,5 +28,8 @@
     <%= submit_tag("Filter") %>
 <% end %>
 </p>
+
+<%= link_to 'Add Watch List Movies', new_watch_list_watch_list_movie_path(@watch_list) %><br>
+
 
 
