@@ -30,9 +30,11 @@ class MoviesController < ApplicationController
     def create
     
         @movie_info = find_movie(params[:movie][:imdb_id])
+        byebug
         @movie = Movie.new(title: @movie_info['title'], release_year: @movie_info["year"],
-        mpaa_rating: @movie_info["rated"], description: @movie_info["description"], genre: @movie_info["genres"][0])
-
+        mpaa_rating: @movie_info["rated"], description: @movie_info["description"], genre: @movie_info["genres"][0], 
+        actors: @movie_info["stars"].take(5))
+    
         if @movie.save
             redirect_to movies_path
         else
@@ -44,14 +46,14 @@ class MoviesController < ApplicationController
     def show
         
         @movie = Movie.find(params[:id])
-
+        
     end
 
     private
 
     def movie_params
 
-        params.require(:movie).permit(:title, :description, :release_year, :mpaa_rating, :genre)
+        params.require(:movie).permit(:title, :description, :release_year, :mpaa_rating, :genre, :actors)
 
     end
 

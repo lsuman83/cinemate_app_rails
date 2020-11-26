@@ -1,5 +1,10 @@
 <h1><%= @movie.title %></h1>
 
+<h3>Actors</h3>
+<p><% @movie.actors.split(",").each do |actor| %>
+        <%= actor.gsub(/\W+/," ") %><br>
+    <% end %></p>
+
 <h3>Description: </h3>
 <p><%= @movie.description %></p>
 
