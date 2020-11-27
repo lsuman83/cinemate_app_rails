@@ -11,6 +11,7 @@
 
   <body>
     <nav>
+     <%= link_to "Home", root_path %>
      <%= link_to "Movies", movies_path %>
       <% if user_signed_in? %>
         <%= link_to "Watch Lists", watch_lists_path %>
