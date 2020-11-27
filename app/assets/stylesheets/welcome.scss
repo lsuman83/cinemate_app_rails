@@ -1,6 +1,34 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-h1 {
-    color:blue
+* {
+    box-sizing: border-box;
+}
+
+div.title {
+    color:blue;
+    text-align: center;
+}
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    display: table;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img{
+    float: left;
+    padding: 5px;
+    width: 200px;
+    height:auto;
+}
+
+div.movie_title {
+    padding: 10px;
+    text-align: center;
 }
