@@ -30,10 +30,11 @@ class MoviesController < ApplicationController
     def create
     
         @movie_info = find_movie(params[:movie][:imdb_id])
-        byebug
+        @movie_poster = find_movie_poster(params[:movie][:imdb_id])
+        
         @movie = Movie.new(title: @movie_info['title'], release_year: @movie_info["year"],
         mpaa_rating: @movie_info["rated"], description: @movie_info["description"], genre: @movie_info["genres"][0], 
-        actors: @movie_info["stars"].take(5))
+        actors: @movie_info["stars"].take(5), poster: @movie_poster["poster"])
     
         if @movie.save
             redirect_to movies_path
@@ -53,7 +54,7 @@ class MoviesController < ApplicationController
 
     def movie_params
 
-        params.require(:movie).permit(:title, :description, :release_year, :mpaa_rating, :genre, :actors)
+        params.require(:movie).permit(:title, :description, :release_year, :mpaa_rating, :genre, :actors, :poster)
 
     end
 
@@ -94,6 +95,23 @@ class MoviesController < ApplicationController
         
         JSON.parse(response.read_body) if response.is_a?(Net::HTTPSuccess) 
         
+    end
+
+    def find_movie_poster(movie_id)
+        
+        url = URI("https://movies-tvshows-data-imdb.p.rapidapi.com/?imdb=#{movie_id}&type=get-movies-images-by-imdb")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Get.new(url)
+        request["x-rapidapi-key"] = ENV["RAPIDAPI_API_KEY"]
+        request["x-rapidapi-host"] = 'movies-tvshows-data-imdb.p.rapidapi.com'
+
+        response = http.request(request)
+        JSON.parse(response.read_body) if response.is_a?(Net::HTTPSuccess) 
+
     end
 
 end

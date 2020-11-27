@@ -1,2 +1,14 @@
+<div class="title">
 <h1>Welcome to Cinemate</h1>
+</div>
+
+
+<% @movies.each do |movie| %>
+    <div class="gallery">
+    <%= link_to movie_path(movie) do %>
+        <%= image_tag(movie.poster, size: "150x200") %>
+    <% end %>
+    <div class="movie_title"><strong><%= movie.title %></strong></div>
+    </div>
+<% end %>
 
