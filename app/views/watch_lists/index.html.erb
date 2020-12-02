@@ -1,7 +1,7 @@
-<h1>Watch Lists</h1>
+<h1><%= current_user.username %>'s Watch Lists</h1>
 
 <% @watch_lists.each do |watch_list| %>
-    <%= link_to watch_list.name, watch_list_path(watch_list) %><br>
+    <%= link_to watch_list.name, watch_list_path(watch_list), class: "text_color" %><br>
 <% end %>
 <br>
-<%= link_to "Add Watch List", new_watch_list_path %>
+

@@ -10,20 +10,33 @@
   </head>
 
   <body>
-    <nav>
-     <%= link_to "Home", root_path %>
-     <%= link_to "Movies", movies_path %>
+    <div class='navbar'>
+        <%= link_to "Home", root_path %>
+        <div class="dropdown">
+          <button class="dropbtn">Movies
+            <i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content">
+              <%= link_to "All Movies", movies_path %>
+              <%= link_to "Movie Database", new_movie_path %>
+          </div>
+        </div>
       <% if user_signed_in? %>
-        <%= link_to "Watch Lists", watch_lists_path %>
+        <div class="dropdown">
+          <button class="dropbtn">Watch Lists
+            <i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <%= link_to "Watch Lists", watch_lists_path %>
+              <%= link_to "Create Watch List", new_watch_list_path %>
+            </div>
+        </div>
         <%= form_tag(destroy_user_session_path, method: :delete, style: "display: inline-block;") do %>
-          <%= submit_tag "Sign Out" %>
+         <%= submit_tag "Sign Out", class: "sign_out" %>
         <% end %>
       <% else %>
         <%= link_to "Log In", new_user_session_path %>
         <%= link_to "Sign Up", new_user_registration_path %>
       <% end %>
-      
-    </nav>
+    </div>
     
     <% flash.each do |name, msg| -%>
     <p>

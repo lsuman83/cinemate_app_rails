@@ -6,7 +6,7 @@
 <li>
     <%= form_for [@watch_list, unwatched_watch_list_movie] do |f| %>
    
-        <%= link_to unwatched_watch_list_movie.movie.title, movie_path(unwatched_watch_list_movie.movie) %>
+        <%= link_to unwatched_watch_list_movie.movie.title, movie_path(unwatched_watch_list_movie.movie), class: "text_color" %>
         
         <%= f.hidden_field(:watched, :value => true)  %>
         <%= f.submit "Watched" %>
@@ -29,7 +29,17 @@
 <% end %>
 </p>
 
-<%= link_to 'Add Watch List Movies', new_watch_list_watch_list_movie_path(@watch_list) %><br>
+<div class="options">
+    <div class="dropdown">
+        <button class="dropbtn" style="color: black;"><strong>Watch List Options</strong>
+            <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+            <%= link_to 'Edit Watch List', edit_watch_list_path(@watch_list) %>
+            <%= link_to 'Add Watch List Movies', new_watch_list_watch_list_movie_path(@watch_list) %>
+        </div>
+    </div>
+</div>
+
 
 
 

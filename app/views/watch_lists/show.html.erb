@@ -8,7 +8,7 @@
     
     <% @watch_list.movies.each do |movie|%>
         <tr>    
-           <td style = "text-align: left"> <%= link_to movie.title, movie_path(movie) %>
+           <td style = "text-align: left"> <%= link_to movie.title, movie_path(movie), class: "text_color" %>
         </td>
 
         <% @watch_list.watch_list_movies.watched.each do |movie_watched| %>
@@ -26,13 +26,19 @@
     <% end %>
 </table>
 
-
-<p>
-<%= link_to 'Edit Watch List', edit_watch_list_path(@watch_list) %>
 <%= form_tag(watch_list_path(@watch_list), method: :delete) do %>
-    <%= submit_tag "Delete Watch List" %>
+    <%= submit_tag "Delete Watch List", style: "margin-top: 100px;" %>
 <% end %>
-</p>
 
-<%= link_to 'Add Watch List Movies', new_watch_list_watch_list_movie_path(@watch_list) %><br>
-<%= link_to 'Watch List Movies', watch_list_watch_list_movies_path(@watch_list) %>
+
+<div class="options">
+    <div class="dropdown">
+        <button class="dropbtn" style="color: black;"><strong>Watch List Options</strong>
+            <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+            <%= link_to 'Edit Watch List', edit_watch_list_path(@watch_list) %>
+            <%= link_to 'Add Watch List Movies', new_watch_list_watch_list_movie_path(@watch_list) %>
+            <%= link_to 'Unwatched Movies', watch_list_watch_list_movies_path(@watch_list) %>
+        </div>
+    </div>
+</div>

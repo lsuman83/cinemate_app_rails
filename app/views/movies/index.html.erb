@@ -5,9 +5,10 @@
 <% end %>
 
 <% @movies.each do |movie| %>
-    <ul>
-        <li><%= link_to movie.title, movie_path(movie) %></li>
-    </ul>
+    <div class ="text_color">
+        <ul>
+            <li><%= link_to movie.title, movie_path(movie), class: "text_color" %></li>
+        </ul>
+    </div>
 <% end %>
 
-<%= link_to "Movie Database", new_movie_path %>
