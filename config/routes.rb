@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
  
-  
   resources :movies
-  get '/search', to: "movies#search"
-  
-
   resources :watch_lists do
     resources :watch_list_movies 
     get "/watch_list_movies/:genre_slug", to: "watch_list_movies#genres" 

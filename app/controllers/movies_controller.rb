@@ -6,14 +6,13 @@ class MoviesController < ApplicationController
         
     end
 
-    def new     
+    
 
-
-    end
-
-    def search
-
+    def new
+        
+       
         @movie_ids = get_movie_id(params[:title])
+        
 
         @movie = Movie.new
 
@@ -32,15 +31,22 @@ class MoviesController < ApplicationController
         @movie_info = find_movie(params[:movie][:imdb_id])
         @movie_poster = find_movie_poster(params[:movie][:imdb_id])
         
-        @movie = Movie.new(title: @movie_info['title'], release_year: @movie_info["year"],
-        mpaa_rating: @movie_info["rated"], description: @movie_info["description"], genre: @movie_info["genres"][0], 
-        actors: @movie_info["stars"].take(5), poster: @movie_poster["poster"])
-    
-        if @movie.save
-            redirect_to movies_path
+        if !Movie.find_by_title(@movie_info["title"]).present?
+            @movie = Movie.new(title: @movie_info['title'], release_year: @movie_info["year"],
+            mpaa_rating: @movie_info["rated"], description: @movie_info["description"], genre: @movie_info["genres"][0], 
+            actors: @movie_info["stars"].take(5), poster: @movie_poster["poster"])
+            
+            if @movie.save
+                redirect_to movies_path
+            else
+                render :new
+            end
         else
-            render :search
+            flash[:alert] = "Movie already in list"
+            render :new
         end
+     
+        
 
     end
 
